@@ -39,3 +39,6 @@ Sum up：A model is an **abstraction** of a part of the real world **for a purpo
 3. MDE started with the introduction of the Unified Modelling Language in the mid 1990s. New standards were defined atop this, reaching the peak of inflated expectations with the model-driven architecture and its promise of automated software development. Many of these promises never came to pass with UML, as the language’s abstraction level was too low. But with the introduction of domain-specific modelling languages and language workbenches, we are beginning to climb the slope of enlightenment.
 
  
+# week2
+## building first textual language
+### one reference link http://dsl-course.org/xtext-writing-a-grammar/
