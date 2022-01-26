@@ -39,6 +39,24 @@ Sum up：A model is an **abstraction** of a part of the real world **for a purpo
 3. MDE started with the introduction of the Unified Modelling Language in the mid 1990s. New standards were defined atop this, reaching the peak of inflated expectations with the model-driven architecture and its promise of automated software development. Many of these promises never came to pass with UML, as the language’s abstraction level was too low. But with the introduction of domain-specific modelling languages and language workbenches, we are beginning to climb the slope of enlightenment.
 
  
-# week2
-## building first textual language
-### one reference link http://dsl-course.org/xtext-writing-a-grammar/
+# week2 building first textual language
+## one reference link http://dsl-course.org/xtext-writing-a-grammar/
+## week2-1 developing eclipse plugins
+### week2-quiz1 reference link:https://www.vogella.com/tutorials/EclipsePlugin/article.html
+1.To test an Eclipse plugin, the following steps are needed. Bring them into the right order:
+   -Create a plugin project in your Eclipse workspace.
+   -Write the plugin code.
+   -Select Run As from the plugin project's context menu.
+   -Select Eclipse Application from the context menu.
+   -Test the plugin in the new Eclipse instance
+
+2.Eclipse plugins are...
+   -the core constituent components of Eclipse.(Core. Pretty much any functionality provided by Eclipse is implemented in a      plugin. Many plugins come installed with Eclipse by default.)
+   -individual software components adding functionality to the Eclipse IDE.
+   -developed in Java in plugin projects in a regular Eclipse workspace.(Correct. Eclipse projects contain regular Java code and a few configuration files. Other programming languages can also be used as long as they eventually produce Java code. We will use an extension of Java called Xtend.)
+
+3.An Eclipse run configuration specifies...
+   -the set of plugins to be included.(Correct. By default, all plugins installed in the original Eclipse and open in the current workspace are included.)
+   -environment variables and command line parameters, controlling such things as available stack and heap space.
+   -the directory where Eclipse keeps its workspace files, including configuration and preference settings.(Correct. This is called the Eclipse workspace and is also where Eclipse keeps projects created.)
+   
