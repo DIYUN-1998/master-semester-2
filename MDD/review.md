@@ -60,3 +60,104 @@ Sum up：A model is an **abstraction** of a part of the real world **for a purpo
    -environment variables and command line parameters, controlling such things as available stack and heap space.
    -the directory where Eclipse keeps its workspace files, including configuration and preference settings.(Correct. This is called the Eclipse workspace and is also where Eclipse keeps projects created.)
    
+## week2-2 a basic grammar
+
+**textual language**--GPLs(general programming language) --Java, C++, C#, Haskell, COBOL, They can be Can be used from any text editor, but proper IDE support helps a lot
+
+**parse(解析)**
+Textual languages are processed through parsing
+Parser takes text and produces an internal object structure to be analysed and further processed
+Parsing involves taking a piece of text and turning it into an internal object structure that can be further analysed later on. In doing this, parsers also check the syntactic validity of a program or model.
+Different kinds of parsing algorithms exist. One of the most commonly used algorithms is LR parsing. If you have never come across LR parsing, you should read up on it and its limitations.
+> (解析涉及到将一段文本转化为内部对象结构，以后可以进一步分析。在此过程中，解析器还检查程序或模型的句法有效性。
+存在不同种类的解析算法。最常用的算法之一是LR解析。如果你从来没有接触过LR解析，你应该阅读一下它和它的限制)
+
+**use grammar to disctribe textual language**
+> These describe the rules to which a piece of text must adhere to be a valid instance of the language.
+
+1. Noam Chomsky introduced four types of languages
+2. Textual languages are typically defined as context-free languages
+3. Can be written in a variety of notations: We will use something based on Backus/Naur form  ,Embedded in the Xtext language workbench
+
+**a basic grammar in Xtext**
+```
+grammar org.xtext.example.testlang.TestLang with org.eclipse.xtext.common.Terminals
+
+generate testLang "http://www.xtext.org/example/testlang/TestLang"
+
+Model:
+	greetings+=Greeting*
+;
+
+Greeting:
+	'Hallo' name=ID '!'
+;
+```
+> - grammar: Keyword starting a language definition
+> - 紧跟着grammar的是自己新建语言的名称（language name）
+> - with :使用 "with "关键词，我们可以导入一个现有的基础语法。这里，我们要导入一些标识符、字符串和数字的标准定义(Import some standard definitions (comments etc)
+> - generate 语句给了 Xtext 一些关于生成过程的更多信息。我们将暂时忽略这一点。
+> - model: The first rule is the so-called start rule. It defines the structure of a complete model.
+> - greeting: 这里是subrule。（Other rules define sub-parts of the language and can be used (directly or indirectly) from the start rule.）
+> - ‘hallo’单引号中的字是expected text， 在规则的主体中，我们可以有字面文本，指定我们期望看到的一点文本，就像这里输入的那样。
+> - ID：call out to seperate rules( references to other rules.)我们还可以找到对其他规则的引用。这基本上意味着。"在这里，我希望看到任何符合称为（本例中的ID）的规则的东西"。
+> - name: assign result of rule call(assign the result of any rule call to a local variable)
+
+**some typical Xtext grammar**
+1. 'text'-Expect to find this exact string at this point in the model
+2. RuleName-Expect to find anything that fits the description in rule RuleName at this position
+3. (...) Group sub-parts of a rule; useful for indicating repetitions etc of larger parts of the rule对规则的子部分进行分组；对表示规则中较大部分的重复等非常有用
+4. <...>? some part of rule is optional
+5. <...>* 表示规则的某些部分可以任意频繁地出现（包括从不出现）。 
+6. <...>+ 表示规则的某些部分可以任意频繁地出现（**至少一次**）。
+7. <..A> | <..B> 表示期待与<...A>或<...B>匹配的东西
+8. Identifier=RuleName 表示任何与RuleName匹配的东西都应该被捕获到一个叫做Identifier的变量中；如果这是在*或+子句中，则使用+=。
+```
+Greeting:
+	greeting=TypeOfGreeting name=ID '!'
+;
+enum TypeOfGreeting:
+	hello='Hello' | hi='Hi'
+;
+```
+
+greeting 是normal rule, 带enum的是enumeration rules，只能包含a set of alternative texts(它只能包含一组备选文本，每个文本都有一个标签。例如，这对于定义一组可用于模型或程序中某一特定位置的备选关键词很有用。)
+
+### week2-2-quiz
+1. Textual languages use **parsing** to translate **text**  into **an in‑memory object structure**  for **further analysis** 
+2. A textual language can be specified using a grammar, which consists of **rules** (**Rules are the top-level elements of any grammar.**)
+3. Grammar rules in Xtext can contain...
+   - **assignments**(上文 name=ID里的nameFor most rule calls, you will need to include an assignment to capture the result of the rule call..）
+   - rule calls: Rule calls are used to define more complex languages.
+   - text literals: Text literals specify the precise text we expect to see in a particular location in each model.
+   - repetition and optionality markers(Markers like *, +, or ? can be used to indicate repetition and optionality.)
+4. In an Xtext grammar, the start rule is...
+      - **the first rule that appears in the grammar.**
+      - the rule that captures the structure of the complete model. Any valid model must match the structure defined by the start rule. To define more complex structures, the start rule can call out to other rules.
+
+5. When making changes to an Xtext grammar, what needs to be done to try out the new version of the language?
+   - Regenerate the language infrastructure from the grammar.** Whenever you have made a change to the grammar, you must regenerate the language infrastructure for the changes to take effect.**
+   - Start a runtime Eclipse and create / edit a text file with the correct file extension. ** Because Xtext generates plugins, you must start a runtime Eclipse before you can test out your changes.**
+
+## week2-3 testing your language
+使用Xpect测试的好处是：write our tests as if we were writing normal files in our language.（像在写自创语言的正常文件一样写测试）
+1. **In the runtime Eclipse instance, create a “plugin” project- A special kind of Java project**
+2. 将自创语言，自创语言.ui，Xpect.xtext.lib 放入依赖，如下图：（Add Xpect and our language project to the dependencies of the new project
+![image](https://user-images.githubusercontent.com/57675566/151247978-d6570574-a5ce-4739-971b-594e9d869f0a.png)
+）
+![image](https://user-images.githubusercontent.com/57675566/151247925-5fb649b6-4ef9-4e5e-9c82-10108c0079e2.png)
+3. 在新建的plug-in project的src文件夹下创建Junit类，（就是新建一个java class），这是为了与标准的jUnit框架挂钩，但对于你想测试的任何语言，代码都是一样的。，代码如图：![JD`NI7QM$SC%FXQ(ZHU1KGE](https://user-images.githubusercontent.com/57675566/151248387-727f505e-2ab7-45e5-b900-bdc056cf8578.png)
+4. 在你放置空测试类的同一文件夹中，我们现在可以开始编写我们的实际测试。为此，我们**创建新的文件并使用双扩展名：最后的扩展名需要是.xt**，这样Xpect才能正确识别文件。在这之前的扩展名需要是你为你的语言定义的。这里是 "ggames"，而在我们的 "Turtles "例子中是 "turtles"
+5. 实际测试类的第一行是 /* XPECT_SETUP XPectTests就会找到class 然后加上 END_SETUP */
+6. 选中实际测试类，右击，run as -junit test
+
+## week 2-4 adding cross-reference
+
+
+### week2-4-quiz
+1. A language element can be named in Xtext by **using the magic variable name "name" in the rule body**
+2. Cross-references are needed in textual languages to ...
+   - allow the definition of reusable blocks of code (允许定义可重复的代码块)(Functions are an example.)
+   - allow referencing things defined in a different part of the code （允许引用在代码的不同部分定义的东西）(Variable declarations are an example.)
+3. A cross-reference can be defined in Xtext by using angular brackets [ and ] around a rule call in a rule body 
+
