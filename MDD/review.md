@@ -187,8 +187,12 @@ scope命令表示我们即将定义一个关于作用域的期望--作用域是�
 	- are called meta-classes if they are defined at layer M2.(M2 中的类是元类，M3 中的类是元元类。)
 	- represent concepts in the domain a level below.
 > **things in the real world / in a running system exist at layer ------ M0**
+
 > **Concepts in an actual model are defined at layer ------ M1**
+
 > **Concepts for defining models are defined at layer ------ M2**
+
 > **Concepts for defining modelling tools and languages are defined at layer ------ M3**
+
 3. **What does MOF stand for? Meta-Object Facility**
 4. A meta-model describes **the abstract syntax of a modelling language**
