@@ -4,11 +4,16 @@ Modelling means using models to develop software
 
 model characteristics：
 1. abstraction : Models never represent every detail of the real world, **model focus on particular properties.**
+
 2. reduction : Models never represent the completeness of reality. (模型不代表现实世界的完整性)Instead, **focus on one part of the real world** . the one that is most important for us at the moment. **reduction is different from abstraction: Abstraction reduces the amount of detail, reduction reduces the amount of world we model**
+
 3. purpose : A model is created for a particular purpose. We are**trying to design a specific system to satisfy particular requirements** or **we may want to learn about a particular property of a real-world system.** (模型的目的：设计特定的系统满足要求或者为了了解已经存在的属性)The purpose of the model determines all other characteristics: what part of the world to look at, what details to abstract away from, how to represent the model, etc.
+
 4. Representation. **Models aren’t models until they are written down in some way. You can have a mental model of something, but that’s not the kind of model we are interested in: mental models are different for everybody and, in fact, change continuously.（要确定的模型，不要心理模型这种不断变化的）** We need a more robust representation of our models so that they can be shared and understood by multiple stakeholders in a software development project. We will use modelling languages to define the way in which models can be represented.
+
 5. Pragmatics. Models can be used and interpreted in different ways – this is called the models pragmatics. For example, **models can be descriptive like a scientific model that describes some observable reality. Models can also be prescriptive as in the case of a design model specifying what the final system should look like. Models can describe a vision of what reality should be like and they can be predictive** – for example a model predicting the weather for the next days.
 Sum up：A model is an **abstraction** of a part of the real world **for a purpose**. Models are **represented in a modelling language.** Models can have different **pragmatics**: they can be descriptive or prescriptive, or describe a vision of what reality should be like (to-be).
+
 ## 1.2 types of models
 1. sketches (草图，比如手绘那种)：
    - Rough, incomplete models
@@ -142,17 +147,27 @@ greeting 是normal rule, 带enum的是enumeration rules，只能包含a set of a
 ## week2-3 testing your language
 使用Xpect测试的好处是：write our tests as if we were writing normal files in our language.（像在写自创语言的正常文件一样写测试）
 1. **In the runtime Eclipse instance, create a “plugin” project- A special kind of Java project**
+
 2. 将自创语言，自创语言.ui，Xpect.xtext.lib 放入依赖，如下图：（Add Xpect and our language project to the dependencies of the new project
 ![image](https://user-images.githubusercontent.com/57675566/151247978-d6570574-a5ce-4739-971b-594e9d869f0a.png)
 ）
 ![image](https://user-images.githubusercontent.com/57675566/151247925-5fb649b6-4ef9-4e5e-9c82-10108c0079e2.png)
+
 3. 在新建的plug-in project的src文件夹下创建Junit类，（就是新建一个java class），这是为了与标准的jUnit框架挂钩，但对于你想测试的任何语言，代码都是一样的。，代码如图：![JD`NI7QM$SC%FXQ(ZHU1KGE](https://user-images.githubusercontent.com/57675566/151248387-727f505e-2ab7-45e5-b900-bdc056cf8578.png)
+
 4. 在你放置空测试类的同一文件夹中，我们现在可以开始编写我们的实际测试。为此，我们**创建新的文件并使用双扩展名：最后的扩展名需要是.xt**，这样Xpect才能正确识别文件。在这之前的扩展名需要是你为你的语言定义的。这里是 "ggames"，而在我们的 "Turtles "例子中是 "turtles"
+
 5. 实际测试类的第一行是 /* XPECT_SETUP XPectTests就会找到class 然后加上 END_SETUP */
+
 6. 选中实际测试类，右击，run as -junit test
 
 ## week 2-4 adding cross-reference
 
+交叉引用对于文本语言是必不可少的。几乎所有的语言都需要允许他们的用户给可重复使用的规范部分命名，以便它们可以从模型的其他地方被引用。在编程语言中，你会知道像变量、函数等东西，所有这些都是使用名称和交叉引用的例子。事物的名称可以通过使用神奇的变量名称 "name "来识别。通常，这与ID规则的调用相对应
+在语法中，我们可以说模型的另一部分可以通过将规则名称放在角括号中来交叉引用[...] 。该规则应包含一个名为name的变量，该变量被赋予一个ID值
+
+**scope**
+scope命令表示我们即将定义一个关于作用域的期望--作用域是指在一个特定的地方可以引用的所有对象的术语。你可能以前听说过变量的作用域。在一个箭头符号后指出我们对范围的期望。我们可以说我们期望什么在作用域中，什么不在作用域中，以及表明我们是否已经指定了完整的作用域。
 
 ### week2-4-quiz
 1. A language element can be named in Xtext by **using the magic variable name "name" in the rule body**
