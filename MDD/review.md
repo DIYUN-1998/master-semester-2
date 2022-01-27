@@ -176,3 +176,19 @@ scope命令表示我们即将定义一个关于作用域的期望--作用域是�
    - allow referencing things defined in a different part of the code （允许引用在代码的不同部分定义的东西）(Variable declarations are an example.)
 3. A cross-reference can be defined in Xtext by using angular brackets [ and ] around a rule call in a rule body 
 
+# week 3
+## week 3-1
+
+
+### week 3-1-quiz
+1. How many layers does MOF define? 4 (MOF defines 4 layers labeled M0 to M3.)
+2. Classes on a layer of the MOF architecture...
+	- are objects instantiating classes at the layer above. For example, M2 meta-classes are instances of M3 meta-meta-classes. (一层上的每个模型元素都是其上一层的类的一个实例。)
+	- are called meta-classes if they are defined at layer M2.(M2 中的类是元类，M3 中的类是元元类。)
+	- represent concepts in the domain a level below.
+> **things in the real world / in a running system exist at layer ------ M0**
+> **Concepts in an actual model are defined at layer ------ M1**
+> **Concepts for defining models are defined at layer ------ M2**
+> **Concepts for defining modelling tools and languages are defined at layer ------ M3**
+3. **What does MOF stand for? Meta-Object Facility**
+4. A meta-model describes **the abstract syntax of a modelling language**
