@@ -208,10 +208,14 @@ scope命令表示我们即将定义一个关于作用域的期望--作用域是�
    - methods defined in one class that behave as if they were defined in another class
 2. When designing code generators, we care about...：
    -ariability. All variable code goes into the generator, all constant code goes into a platform library.
+   
 3.Consider the following method definitions.： Method A
 ![F9{AF(}JI8GPE3K4Y 1LYLL](https://user-images.githubusercontent.com/57675566/153971213-b7c0d616-25ed-461c-b77a-2cf3a5ec0c37.png)
+
 **4. Consider the following method definitions. Method B**
 ![TD9}SO~)(X4N7$FT1M1A2 E](https://user-images.githubusercontent.com/57675566/153971327-778af52f-af72-473f-bbae-f8569f921259.png)
+这里的声明是int 但是后面的实例是eINSTANCE.createAddition 所以产生的实例是addition
+
 5. "Method dispatch" refers to how an object-oriented language selects the specific method to invoke in response to a method call depending on the run-time type of objects and parameters.
 
 ## week 5-2
