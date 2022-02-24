@@ -6,6 +6,7 @@ Java是没有指针的，同时也不对程序员暴露其元素的地址，寻�
 1.前提条件
 - 数组是有序数组，数组中无重复元素  ascending order 升序排列
 - 边界条件不变，区间就是不变量，关于left right和middle的关系，一般定义两种：[left, right]，[left, right)
+-  write an algorithm with O(log n) runtime complexity. 时间复杂度暗示，空间复杂度是O（1）
 
 2.1 二分法第一种写法
 定义 target 是在一个在左闭右闭的区间里，也就是[left, right]。
@@ -25,7 +26,7 @@ class Solution {
             else if (nums[mid] < target)
                 left = mid + 1;
             else if (nums[mid] > target)
-                right = mid - 1;
+                right = mid - 1; 右边是有效空间，再次循环的时候到的了，所以要-1
         }
         return -1;
     }
@@ -45,9 +46,18 @@ class Solution {
             else if (nums[mid] < target)
                 left = mid + 1;// target 在右区间，在[middle + 1, right)中
             else if (nums[mid] > target)
-                right = mid; //target 在左区间，在[left, middle)中
+                right = mid; //target 在左区间，在[left, middle)中 右边是无效空间，所以可以不用-1，因为到不了
         }
         return -1;
     }
 }
 ```
+### question note
+**35. Search Insert Position**
+>Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+>You must write an algorithm with O(log n) runtime complexity.
+可以分成4种情况，但是1，3,4 的return是可以合并的。再写之前用例子画一下
+1. target在数组所有值之前 left=right那个循环，right 再-1. 变成 【0，-1】。 所以再while循环外return right+1
+2. 目标值是数组中的某个 在while loop中的判断之后，return middle
+3. target在数组所有值之后 return right+1
+4. 目标值插入数组的某位置return right+1
