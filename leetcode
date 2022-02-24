@@ -1,3 +1,0 @@
-# array
-Java是没有指针的，同时也不对程序员暴露其元素的地址，寻址操作完全交给虚拟机,而c++中的二维数组地址是连续的
-![image](https://github.com/DIYUN-1998/master-semester-2/blob/main/screenshoot/4%5DAVMZHZ%60HW9ZVF6LG_~J%5BH.png)
