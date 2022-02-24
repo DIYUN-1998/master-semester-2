@@ -4,7 +4,7 @@ Java是没有指针的，同时也不对程序员暴露其元素的地址，寻�
 ![4 AVMZHZ`HW9ZVF6LG_~J H](https://user-images.githubusercontent.com/57675566/155604361-57caa792-f3b0-44a9-bf7c-25aea57267c7.png)
 ## binary search
 1.前提条件
-- 数组是有序数组，数组中无重复元素
+- 数组是有序数组，数组中无重复元素  ascending order 升序排列
 - 边界条件不变，区间就是不变量，关于left right和middle的关系，一般定义两种：[left, right]，[left, right)
 
 2.1 二分法第一种写法
