@@ -61,3 +61,8 @@ class Solution {
 2. 目标值是数组中的某个 在while loop中的判断之后，return middle
 3. target在数组所有值之后 return right+1
 4. 目标值插入数组的某位置return right+1
+
+**69.Sqrt(x)**
+>Given a non-negative integer x, compute and return the square root of x.
+>Since the return type is an integer, the decimal digits are **truncated(截断)**, and only **the integer part** of the result is returned.
+>Note: You are not allowed to use any built-in exponent function or operator, such as pow(x, 0.5) or x ** 0.5.
