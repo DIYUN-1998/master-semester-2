@@ -66,8 +66,56 @@ class Solution {
 >Given a non-negative integer x, compute and return the square root of x.
 >Since the return type is an integer, the decimal digits are **truncated(截断)**, and only **the integer part** of the result is returned.
 >Note: You are not allowed to use any built-in exponent function or operator, such as pow(x, 0.5) or x ** 0.5.
-```Java
-```
+
 **367. Valid Perfect Square**
 >Given a positive integer num, write a function which returns True if num is a perfect square else False.
 >Follow up: Do not use any built-in library function such as sqrt
+
+这两题非常相似，用mid与给出的target number -num进行比较，注意如果要用mid* mid与num比较，要讲使用long变量，不然会overflow，如果用int，那么为了防止overflow，mid=left+（right-left）/2
+同时 比较为 mid> or < target/mid 。 
+
+## remove elements
+1.条件
+- 一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
+- 不要使用额外的数组空间，你必须仅使用 $O(1)$ 额外空间并原地修改输入数组
+- **must do this in-place** --就是只能再这个结构里面改，空间复杂度不能增加
+
+2.1 暴力搜索,使用两个for loop， 时间复杂度：O(n^2), 空间复杂度：O(1)
+```Java
+ int removeElement(vector<int>& nums, int val) {
+        int size = nums.size();
+        for (int i = 0; i < size; i++) {
+            if (nums[i] == val) { // 发现需要移除的元素，就将数组集体向前移动一位
+                for (int j = i + 1; j < size; j++) {
+                    nums[j - 1] = nums[j];
+                }
+                i--; // 因为下标i以后的数值都向前移动了一位，所以i也向前移动一位
+                size--; // 此时数组的大小-1
+            }
+        }
+        return size;
+```
+2.2 双指针法 ： 通过一个快指针和慢指针在一个for循环下完成两个for循环的工作 时间复杂度：O(n) 空间复杂度：O(1)
+```Java
+class Solution {
+    public int removeElement(int[] nums, int val) {
+
+        // 快慢指针
+        int fastIndex = 0;
+        int slowIndex;
+        for (slowIndex = 0; fastIndex < nums.length; fastIndex++) {
+            if (nums[fastIndex] != val) {
+                nums[slowIndex] = nums[fastIndex];
+                slowIndex++;
+            }
+        }
+        return slowIndex;
+
+    }
+}
+```
+### question note
+26. Remove Duplicates from Sorted Array
+>keep two pointers i and j, where i is the slow-runner while j is the fast-runner. As long as nums[i] = nums[j], we increment j to skip the duplicate.
+>When we encounter nums[j] not equal nums[i], the duplicate run has ended so we must copy its value to nums[i+1]. ii is then incremented
+
