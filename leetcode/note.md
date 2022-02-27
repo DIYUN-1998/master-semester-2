@@ -119,3 +119,8 @@ class Solution {
 >keep two pointers i and j, where i is the slow-runner while j is the fast-runner. As long as nums[i] = nums[j], we increment j to skip the duplicate.
 >When we encounter nums[j] not equal nums[i], the duplicate run has ended so we must copy its value to nums[i+1]. ii is then incremented
 
+283. Move Zeroes
+>Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+>Note that you must do this in-place without making a copy of the array.
+将题目转换成发现0就移除，再返回非0的最后一个数字的index，再在剩下的array里填满0
+
