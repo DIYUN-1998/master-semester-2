@@ -1,0 +1,15 @@
+# 位运算
+eg打印一个32位数
+```Java
+public static void print(int num){
+  for (int i=31;i>=0;i--){
+  System.out.print((num&(1<<i))==0?"0":"1");
+  }
+  System.out.println
+}
+public static void main(String[] args){
+  int num=3346;
+  print(num);
+}
+```
+与运算，两个1相遇出1，所以num和向左移i位的1相与，如果结果是1，就说明num在那位上有1，没有，说明num在那位上为0
