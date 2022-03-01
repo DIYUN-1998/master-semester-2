@@ -114,6 +114,9 @@ class Solution {
     }
 }
 ```
+2.3 滑动窗口（sliding window） （207）
+
+
 ### question note
 26. Remove Duplicates from Sorted Array
 >keep two pointers i and j, where i is the slow-runner while j is the fast-runner. As long as nums[i] = nums[j], we increment j to skip the duplicate.
@@ -142,3 +145,26 @@ class Solution {
 5. 如果i，j只有一个大于等于0， 也是false
 6. **别忘了i和j每个循环的--**
 7. 跳出大循环，return true
+
+977.Squares of a Sorted Array
+>Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+>Input: nums = [-4,-1,0,3,10]
+>Output: [0,1,9,16,100]
+>Explanation: After squaring, the array becomes [16,1,0,9,100].
+>After sorting, it becomes [0,1,9,16,100].
+**最关键的点在于思考非倒序数列的意义--原数组中的元素平方最大值一定产生在原数组的最左边或者最右边。**
+所以用双指针法：
+定义一个新数组result，和A数组一样的大小，让k指向result数组终止位置。
+定义左右指针 left 和right
+**在left<=right的前提下**：
+if(Math.abs(nums[left])>Math.abs(nums[right]) 将左边的放入 result最后一位
+else，右边的放入result最后一位
+
+209：Minimum Size Subarray Sum
+>Given an array of positive integers nums and a positive integer target, return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] of which the >sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+>Input: target = 7, nums = [2,3,1,2,4,3]
+>Output: 2
+>Explanation: The subarray [4,3] has the minimal length under the problem constraint
+**这里储存子数列最小长度的变量result要开始设置为Integer_max**
+
+
