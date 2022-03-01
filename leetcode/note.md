@@ -124,3 +124,21 @@ class Solution {
 >Note that you must do this in-place without making a copy of the array.
 将题目转换成发现0就移除，再返回非0的最后一个数字的index，再在剩下的array里填满0
 
+844. Backspace String Compare
+>Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
+>Note that after backspacing an empty text, the text will continue empty.
+>eg: ab## c#d# return: true
+双指针法：
+时间复杂度O（n+m）空间复杂度O（1）
+**从后向前遍历string s 和 t，记录#的数量，如果#数量抵消至0，就开始比较s[i]==t[j] return true or not**
+主要逻辑：
+1. while大循环 i>=0||j>=0 。 i是string s的长度， j是string t的长度
+2. while小循环，是关于string s的。
+- 从后向前，当前为 #， nums+1
+- 当前不为#, nums不为0， nums-1
+- 当前不为#,nums 为0， break， 与t[j]比较
+3. 关于string t的while循环，同理
+4. 根据得到的阶段性的i，j进行判断， 在i和j都大于等于0的情况下如果s[i]不等于t[j]， return false
+5. 如果i，j只有一个大于等于0， 也是false
+6. **别忘了i和j每个循环的--**
+7. 跳出大循环，return true
