@@ -115,7 +115,15 @@ class Solution {
 }
 ```
 2.3 滑动窗口（sliding window） （207）
-
+不断的调节子序列的起始位置和终止位置，从而得出我们要想的结果
+主要确定以下三点：
+- 窗口内内容
+- 如何移动窗口起始位置
+- 如何移动窗口结束位置
+**窗口位置如何移动**
+子序列长度为（right-left+1）
+result一开始是设置的Integermax或者Integermin，与子序列长度比较，可以用三元运算符，也可以用内置函数Math.min()
+记得比较完之后变更子序列的起始位置
 
 ### question note
 26. Remove Duplicates from Sorted Array
