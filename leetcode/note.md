@@ -174,5 +174,35 @@ else，右边的放入result最后一位
 >Output: 2
 >Explanation: The subarray [4,3] has the minimal length under the problem constraint
 **这里储存子数列最小长度的变量result要开始设置为Integer_max**
-
-
+there are two method:
+1. brute force method:
+- two loop, the outter loop is i loop , i is the left side of pointer
+- **sum=0;** remember to write it ,cause when we find a sublength >=target, we break the j loop and put the sub in result to find another sublength ,to compare if there is a sublength smaller than previous.
+```Java
+for(int i=0;i<nums.length;i++){
+            sum=0;
+            for(int j=i;j<nums.length;j++){
+                sum+=nums[j];
+                if(sum>=target){
+                    sublength=j-i+1;
+                    result=result<sublength? result:sublength;
+                    break;
+                }
+            }
+        }
+     **   return result==Integer.MAX_VALUE? 0: result;**
+```
+- dont forget if the result is as original value, reuturn 0
+2. sliding window
+-only the right pointer j has for loop, when finding a potential sublength, compare and left pointer ++
+```Java
+for(int j=0;j<nums.length;j++){
+            sum+=nums[j];
+            while(sum>=target){
+                sub=j-i+1;
+                result= result<sub? result:sub;
+                sum-=nums[i++];
+            }
+        }
+        return result==Integer.MAX_VALUE? 0:result;
+```
