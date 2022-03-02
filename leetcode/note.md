@@ -206,3 +206,5 @@ for(int j=0;j<nums.length;j++){
         }
         return result==Integer.MAX_VALUE? 0:result;
 ```
+
+904. Fruit Into Baskets
