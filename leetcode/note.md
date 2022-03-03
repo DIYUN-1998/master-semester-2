@@ -125,6 +125,17 @@ class Solution {
 result一开始是设置的Integermax或者Integermin，与子序列长度比较，可以用三元运算符，也可以用内置函数Math.min()
 记得比较完之后变更子序列的起始位置
 
+2.4 螺旋矩阵（lc 59）
+给定一个正整数 n，生成一个包含 1 到 $n^2$ 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。
+示例:
+输入: 3 输出: [ [ 1, 2, 3 ], [ 8, 9, 4 ], [ 7, 6, 5 ] ]
+
+
+**重点在于用算法模拟整个过程**
+画每四条边，这四条边怎么画，**每画一条边都要坚持一致的左闭右开，或者左开又闭的原则**，这样这一圈才能按照统一的规则画下来
+拐角处让给新的一条边来继续画。这也是坚持了每条边左闭右开的原则。
+
+
 ### question note
 26. Remove Duplicates from Sorted Array
 >keep two pointers i and j, where i is the slow-runner while j is the fast-runner. As long as nums[i] = nums[j], we increment j to skip the duplicate.
@@ -208,3 +219,54 @@ for(int j=0;j<nums.length;j++){
 ```
 
 904. Fruit Into Baskets
+
+# linkedlist
+## 种类
+链接的入口节点称为链表的头结点也就是head。
+1.单链表
+![1646334573(1)](https://user-images.githubusercontent.com/57675566/156635311-f2b14d9e-d9d9-4b5c-9e4c-968f1c28f7d9.png)
+2.双链表
+双链表：每一个节点有两个指针域，一个指向下一个节点，一个指向上一个节点。
+**双链表 既可以向前查询也可以向后查询。**
+![1646334625(1)](https://user-images.githubusercontent.com/57675566/156635432-f26ebb3b-20db-428a-b109-1606006484b2.png)
+
+3.循环链表
+![1646334657(1)](https://user-images.githubusercontent.com/57675566/156635494-f9cf5028-944e-476a-b891-0baa9977c0cd.png)
+
+## 存储方式
+链表在内存中可不是连续分布的。
+链表是通**过指针域的指针链接在内存中各个节点**。
+所以链表中的节点在内存中不是连续分布的 ，而是散乱分布在内存中的某地址上，分配机制取决于操作系统的内存管理。
+Java中，删除一个节点就是原来指向这个节点的直接指向这个节点之后一位，因为java的内存回收机制，所以不用自己手动释放内存
+**删除第五个节点，需要从头节点查找到第四个节点通过next指针进行删除操作，查找的时间复杂度是$O(n)$**
+##与array 对比
+数组：O(n)-插入，删除时间复杂度 O(1) 查询时间复杂度 **适用数据量固定，频繁查询，较少增删**
+链表  O(1)-.................. O(N) ..............**数据量不固定，频繁增删，较少查询**
+
+## 链表的定义（白板code时候要用）
+```Java
+public class ListNode {
+    // 结点的值
+    int val;
+
+    // 下一个结点
+    ListNode next;
+
+    // 节点的构造函数(无参)
+    public ListNode() {
+    }
+
+    // 节点的构造函数(有一个参数)
+    public ListNode(int val) {
+        this.val = val;
+    }
+
+    // 节点的构造函数(有两个参数)
+    public ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}
+```
+
+
