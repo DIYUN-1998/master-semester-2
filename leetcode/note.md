@@ -218,7 +218,19 @@ for(int j=0;j<nums.length;j++){
         return result==Integer.MAX_VALUE? 0:result;
 ```
 
+167 Two Sum II - Input Array Is Sorted
+>Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+>Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
+>The tests are generated such that there is exactly one solution. You may not use the same element twice.
+>Your solution must use only constant extra space.
+**从缩减搜索空间的角度思考**
+如果用暴力解法求解，一次只检查一个单元格，那么时间复杂度一定是 O(n^2)。要想得到 O(n)的解法，我们就需要能够一次排除多个单元格.
+**双指针从两端往中间缩减，而不是一个快一个慢**
+**比如数组长度为8， 计算 A[0] + A[7] ，与 target 进行比较。如果不相等的话，则要么大于 target，要么小于 target
+假设此时 A[0] + A[7] 小于 target。这时候，我们应该去找和更大的两个数。由于 A[7] 已经是最大的数了，其他的数跟 A[0] 相加，和只会更小。也就是说 A[0] + A[6] 、A[0] + A[5]、……、A[0] + A[1] 也都小于 target，这些都是不合要求的解，可以一次排除**
+
 904. Fruit Into Baskets
+
 
 # linkedlist
 ## 种类
