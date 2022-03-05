@@ -229,6 +229,16 @@ for(int j=0;j<nums.length;j++){
 **比如数组长度为8， 计算 A[0] + A[7] ，与 target 进行比较。如果不相等的话，则要么大于 target，要么小于 target
 假设此时 A[0] + A[7] 小于 target。这时候，我们应该去找和更大的两个数。由于 A[7] 已经是最大的数了，其他的数跟 A[0] 相加，和只会更小。也就是说 A[0] + A[6] 、A[0] + A[5]、……、A[0] + A[1] 也都小于 target，这些都是不合要求的解，可以一次排除**
 
+557. 反转字符串中的单词 III
+>给定一个字符串 s ，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+>输入：s = "Let's take LeetCode contest"
+>输出："s'teL ekat edoCteeL tsetnoc"
+1.写一个将char数组里的字符反转的方法，用双指针
+2.将string 转成char array。只需要关注空格和最后 array的最后一位就行（因为最后一个单词后无空格）
+3.写一个循环，如果到空格位，那么start到空格位-1这些字符反转，然后**更新start，新的起始点是start=i+1**。
+4.如果是最后一个单词，就是index=s.length-1，引入反转函数。
+5.最后 ** return new String(array);**
+
 904. Fruit Into Baskets
 
 
