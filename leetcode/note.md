@@ -290,5 +290,21 @@ public class ListNode {
     }
 }
 ```
+### 解决问题的时候一处理头节点有两个方法：
+1. 在头节点之前创造一个虚拟节点用那个节点做头：
+ListNode dummy =new ListNode (-1, head);
+这样，head就是dummy.next **注意最后return 的时候要return head ！！**
+这样的话一开始只需要判断head是不是为null就行，判断完了再造虚拟节点
 
+2. 不创建虚拟dummy，仍然用现在的head。但是如果要删除的node在头部的话在solution一开始要有一个额外操作
+```Java
+  while (head != null && head.val == val) {
+        head = head.next;
+    }
+    // 已经为null，提前退出
+    if (head == null) {
+        return head;
+    }
+```
+注意那里是while不是if，因为会有比如 在链表 【7,7,7,7】里删除value为7 的值得问题。这里就要全删，一个if是不能完成的。
 
