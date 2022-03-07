@@ -330,6 +330,32 @@ public void deleteAtIndex(int index){}同样，但是要比上一个简单，只
 
 2.双向链表
 
+206. Reverse Linked List
+>Given the head of a singly linked list, reverse the list, and return the reversed list.
+>Input: head = [1,2,3,4,5]  Output: [5,4,3,2,1]
+1. 双指针：在head前再建一个value是null的空指针，然后初始pre指针就是这个虚拟节点，初始cur指针就是第一个node，然后让每个node的next指向前一个
+2. 注意再让指向前一个之前，要建一个listnode来保存初始的next指向
+也可以用递归，就是
+```Java
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        return reverse(null, head);
+    }
+
+    private ListNode reverse(ListNode prev, ListNode cur) {
+        if (cur == null) {
+            return prev;
+        }
+        ListNode temp = null;
+        temp = cur.next;// 先保存下一个节点
+        cur.next = prev;// 反转
+        // 更新prev、cur位置
+        // prev = cur;
+        // cur = temp;
+        return reverse(cur, temp); 注意给递归方法的赋值，相当于双指针的后两步
+    }
+}
+```
 
 
 
