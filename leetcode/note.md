@@ -356,9 +356,45 @@ class Solution {
     }
 }
 ```
-
-
-
+24.Swap Nodes in Pairs
+>Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
+>Input: head = [1,2,3,4]  Output: [2,1,4,3]
+**无论哪种方法都要创造dummy node。做prev**
+1. 非递归写法
+这里的dummy node 和head, head.next初始分别是 nullor0,1,2.
+要保证head 和head.next都不是null，不然一个没有或者只有一个都不能反转，只能直接return head
+在while循环里
+![1646751832(1)](https://user-images.githubusercontent.com/57675566/157264864-55a46c90-1756-4cbf-bdad-fc5b81bc2e99.png)
+```Java
+  ListNode temp = head.next.next; // 缓存 next
+      prev.next = head.next;          // 将 prev 的 next 改为 head 的 next
+      head.next.next = head;          // 将 head.next(prev.next) 的next，指向 head
+      head.next = temp;               // 将head 的 next 接上缓存的temp
+      prev = head;                    // 步进1位
+      head = head.next;               // 步进1位
+```
+2.递归方法
+思考三点
+- 返回值：这里要的是反转完成后的子链的头。比如2，4
+- 调用单元做了什么：设需要交换的两个点为 head 和 next，head 连接后面交换完成的子链表，next 连接 head，完成交换
+- 停止递归的条件：如上，当有head或者head.next为null的时候没有两个值无法反转
+```Java
+ if(head == null || head.next == null){
+            return head;
+        }
+        ListNode next = head.next;
+        head.next = swapPairs(next.next);
+        next.next = head;
+        return next;
+or
+ if (head == null || head.next == null)  
+            return head;
+        ListNode rest = head.next.next;
+        ListNode newHead = head.next;
+        newHead.next = head;
+        head.next = swapPairs(rest);
+        return newHead;
+```
 
 
 
