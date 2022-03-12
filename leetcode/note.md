@@ -4,7 +4,7 @@
 - Binary search
 - Two pointers
 >If asked for all permutations/subsets then
-- Backtracking
+- Backtracking (回溯)
 
 >If given a tree then
 - DFS
@@ -435,6 +435,15 @@ or
         head.next = swapPairs(rest);
         return newHead;
 ```
+
+19.删除链表的倒数第N个节点
+双指针，让快指针先跑n。注意边界和判断值。
+
+剑指offer面试题2.07
+求两个链表交点节点的指针。 这里同学们要注意，交点不是数值相等，而是指针相等。
+所以这里要求出两个链表的长度，然后让长度长的那个先走两个长度之差达到尾相等。
+然后再一起遍历
+
 
 
 
