@@ -444,6 +444,11 @@ or
 所以这里要求出两个链表的长度，然后让长度长的那个先走两个长度之差达到尾相等。
 然后再一起遍历
 
+142：
+>Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the >index of the node that tail's next pointer is connected to (0-indexed). It is -1 if there is no cycle. Note that pos is not passed as a parameter.
+数学问题，见https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/和代码随想录。
+key point：1， 快慢指正找链表环入口。 确认链表环node之后新一个指针在head，然后指针同步后移，两个指针相遇的地方就是链表入环的node。假设从头结点到环形入口节点 的节点数为x。 环形入口节点到 fast指针与slow指针相遇节点 节点数为y。 从相遇节点 再到环形入口节点节点数为 z，计算相遇时候快慢指针走过的node数，然后得出x，y，z的关系。
 
 
 
