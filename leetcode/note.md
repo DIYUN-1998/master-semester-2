@@ -281,6 +281,107 @@ for(int j=0;j<nums.length;j++){
 
 904. Fruit Into Baskets
 
+## sort 排序算法
+![_OGUAQ%2{FJBG31P~NTT88A](https://user-images.githubusercontent.com/57675566/158185598-4a49b5ff-3381-46fa-a32e-dd32c913cf41.png)
+
+### Bubble Sort
+1.比较相邻的元素。如果第一个比第二个大，就交换它们两个；
+2.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；
+3.针对所有的元素重复以上的步骤，除了最后一个；
+4.重复步骤1~3，直到排序完成
+```Java
+public static void bubbleSort(int[] arr) {
+    int temp = 0;
+    boolean swap;
+    for (int i = arr.length - 1; i > 0; i--) { // 每次需要排序的长度
+        swap=false;
+        for (int j = 0; j < i; j++) { // 从第一个元素到第i个元素
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swap=true;
+            }
+        }//loop j
+        if (swap==false){
+            break;
+        }
+    }//loop i
+}// method bubbleSort
+```
+在数据完全有序的时候展现出最优时间复杂度，为O(n)。其他情况下，几乎总是O( n2 )。因此，算法在数据基本有序的情况下，性能最好。
+要使算法在最佳情况下有O(n)复杂度，需要做一些改进，增加一个swap的标志，当前一轮没有进行交换时，说明数组已经有序，没有必要再进行下一轮的循环了，直接退出
+
+### Selection Sort
+1.在未排序序列中找到最小（大）元素，存放到排序序列的起始位置
+2.从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。
+3.重复第二步，直到所有元素均排序完毕。
+（可以看做是bubble sort的改进）
+```Java
+public static void selectionSort(int[] arr) {
+    int temp, min = 0;
+    for (int i = 0; i < arr.length - 1; i++) {
+        min = i;
+        // 循环查找最小值
+        for (int j = i + 1; j < arr.length; j++) {
+            if (arr[min] > arr[j]) {
+                min = j;
+            }
+        }
+        if (min != i) {
+            temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+        }
+    }
+}
+```
+
+### Insertion sort 插入排序
+前到后依次处理未排好序的元素，对于每个元素，我们将它与之前排好序的元素进行比较，找到对应的位置后并插入。本质上，对于每一个要被处理的元素，我们只关心它与之前元素的关系，当前元素之后的元素我们下一轮才去处理。每个元素和之前元素比较的过程，是一个从后到前扫描的过程。在扫描时，我们将已排好序的元素先后挪位，为新的元素提供插入位置。这也叫做 in-place 排序，这样我们就不需要额外的内存空间了
+
+步骤：
+1.**从第二个元素（第一个要被排序的新元素）开始**。从后向前扫描之前的元素序列
+2. 如果当前扫描的元素大于新元素，就讲扫描元素移动到下一位
+3. 循环上一步直到找到一个小于等于新元素的位子
+4. 将新元素插入该位子，重复之前的。
+
+```Java
+public void insertionSort(int[] array) {
+    for(int i=1;i<array.length;i++){
+        int cur=array[i];
+        int j=i-1;
+        while(j>=0&&array[j]>cur){
+        array[j+1]=array[j];
+        j--;
+        }
+        array[j+1]=cur;
+    }
+}
+```
+时间复杂度：O(n²)
+空间复杂度：O(1)
+时间复杂度」在此算法中就是计算比较的次数，第一个元素我们需要比较1次，第二个元素2次，对于第n个元素，我们需要和之前的元素比较n次，比较总数量也就是 1 + 2 + … + n = n(n + 1) / 2
+≈ n^2。因为我们调换位置时采用「原地操作」(in place)，所以不需要额外空间，既空间复杂度为O(1)
+
+147
+>Given the head of a singly linked list, sort the list using insertion sort, and return the sorted list's head.
+>Input: head = [4,2,1,3]
+>Output: [1,2,3,4]
+### quick sort
+快排是一种分治（Divide and Conquer）算法，在这种算法中，我们把大问题变成小问题，然后将小问题逐个解决，当小问题解决完时，大问题也迎刃而解。
+快排的基本概念就是选取一个目标元素，然后将目标元素放到数组中正确的位置。然后根据排好序后的元素，将数组切分为两个子数组，用相同的方法，在没有排好序的范围使用相同的操作。
+![RR_@69H1UDTFOG6}IALH8R](https://user-images.githubusercontent.com/57675566/158192856-9c199041-e25e-4b3b-9eb1-3d3052c44a64.png)
+
+步骤：
+1.取数组末尾数当做基准数（pivot）
+2.将所有小于pivot的数排到它之前，比pivot大的数排在基准数之后
+3.根据pivot的位子将数组分为两部分
+4.对子数组采取递归操作，直到子数组长度小于1
+```Java
+
+```
+
 
 # linkedlist
 ## 种类
