@@ -1,4 +1,4 @@
-# userful tips， from ：https://seanprashad.com/leetcode-patterns/
+userful tips， from ：https://seanprashad.com/leetcode-patterns/
 
 >If input array is sorted then
 - Binary search
@@ -96,7 +96,7 @@ class Solution {
 **35. Search Insert Position**
 >Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 >You must write an algorithm with O(log n) runtime complexity.
-可以分成4种情况，但是1，3,4 的return是可以合并的。再写之前用例子画一下
+>可以分成4种情况，但是1，3,4 的return是可以合并的。再写之前用例子画一下
 1. target在数组所有值之前 left=right那个循环，right 再-1. 变成 【0，-1】。 所以再while循环外return right+1
 2. 目标值是数组中的某个 在while loop中的判断之后，return middle
 3. target在数组所有值之后 return right+1
@@ -184,16 +184,16 @@ result一开始是设置的Integermax或者Integermin，与子序列长度比较
 283. Move Zeroes
 >Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 >Note that you must do this in-place without making a copy of the array.
-将题目转换成发现0就移除，再返回非0的最后一个数字的index，再在剩下的array里填满0
+>将题目转换成发现0就移除，再返回非0的最后一个数字的index，再在剩下的array里填满0
 
 844. Backspace String Compare
 >Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
 >Note that after backspacing an empty text, the text will continue empty.
 >eg: ab## c#d# return: true
-双指针法：
-时间复杂度O（n+m）空间复杂度O（1）
-**从后向前遍历string s 和 t，记录#的数量，如果#数量抵消至0，就开始比较s[i]==t[j] return true or not**
-主要逻辑：
+>双指针法：
+>时间复杂度O（n+m）空间复杂度O（1）
+>**从后向前遍历string s 和 t，记录#的数量，如果#数量抵消至0，就开始比较s[i]==t[j] return true or not**
+>主要逻辑：
 1. while大循环 i>=0||j>=0 。 i是string s的长度， j是string t的长度
 2. while小循环，是关于string s的。
 - 从后向前，当前为 #， nums+1
@@ -211,21 +211,21 @@ result一开始是设置的Integermax或者Integermin，与子序列长度比较
 >Output: [0,1,9,16,100]
 >Explanation: After squaring, the array becomes [16,1,0,9,100].
 >After sorting, it becomes [0,1,9,16,100].
-**最关键的点在于思考非倒序数列的意义--原数组中的元素平方最大值一定产生在原数组的最左边或者最右边。**
-所以用双指针法：
-定义一个新数组result，和A数组一样的大小，让k指向result数组终止位置。
-定义左右指针 left 和right
-**在left<=right的前提下**：
-if(Math.abs(nums[left])>Math.abs(nums[right]) 将左边的放入 result最后一位
-else，右边的放入result最后一位
+>**最关键的点在于思考非倒序数列的意义--原数组中的元素平方最大值一定产生在原数组的最左边或者最右边。**
+>所以用双指针法：
+>定义一个新数组result，和A数组一样的大小，让k指向result数组终止位置。
+>定义左右指针 left 和right
+>**在left<=right的前提下**：
+>if(Math.abs(nums[left])>Math.abs(nums[right]) 将左边的放入 result最后一位
+>else，右边的放入result最后一位
 
 209：Minimum Size Subarray Sum
 >Given an array of positive integers nums and a positive integer target, return the minimal length of a contiguous subarray [numsl, numsl+1, ..., numsr-1, numsr] of which the >sum is greater than or equal to target. If there is no such subarray, return 0 instead.
 >Input: target = 7, nums = [2,3,1,2,4,3]
 >Output: 2
 >Explanation: The subarray [4,3] has the minimal length under the problem constraint
-**这里储存子数列最小长度的变量result要开始设置为Integer_max**
-there are two method:
+>**这里储存子数列最小长度的变量result要开始设置为Integer_max**
+>there are two method:
 1. brute force method:
 - two loop, the outter loop is i loop , i is the left side of pointer
 - **sum=0;** remember to write it ,cause when we find a sublength >=target, we break the j loop and put the sub in result to find another sublength ,to compare if there is a sublength smaller than previous.
@@ -263,21 +263,21 @@ for(int j=0;j<nums.length;j++){
 >Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
 >The tests are generated such that there is exactly one solution. You may not use the same element twice.
 >Your solution must use only constant extra space.
-**从缩减搜索空间的角度思考**
-如果用暴力解法求解，一次只检查一个单元格，那么时间复杂度一定是 O(n^2)。要想得到 O(n)的解法，我们就需要能够一次排除多个单元格.
-**双指针从两端往中间缩减，而不是一个快一个慢**
-**比如数组长度为8， 计算 A[0] + A[7] ，与 target 进行比较。如果不相等的话，则要么大于 target，要么小于 target
-假设此时 A[0] + A[7] 小于 target。这时候，我们应该去找和更大的两个数。由于 A[7] 已经是最大的数了，其他的数跟 A[0] 相加，和只会更小。也就是说 A[0] + A[6] 、A[0] + A[5]、……、A[0] + A[1] 也都小于 target，这些都是不合要求的解，可以一次排除**
+>**从缩减搜索空间的角度思考**
+>如果用暴力解法求解，一次只检查一个单元格，那么时间复杂度一定是 O(n^2)。要想得到 O(n)的解法，我们就需要能够一次排除多个单元格.
+>**双指针从两端往中间缩减，而不是一个快一个慢**
+>**比如数组长度为8， 计算 A[0] + A[7] ，与 target 进行比较。如果不相等的话，则要么大于 target，要么小于 target
+>假设此时 A[0] + A[7] 小于 target。这时候，我们应该去找和更大的两个数。由于 A[7] 已经是最大的数了，其他的数跟 A[0] 相加，和只会更小。也就是说 A[0] + A[6] 、A[0] + A[5]、……、A[0] + A[1] 也都小于 target，这些都是不合要求的解，可以一次排除**
 
 557. 反转字符串中的单词 III
->给定一个字符串 s ，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+>给定一个字符串 s ，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
 >输入：s = "Let's take LeetCode contest"
 >输出："s'teL ekat edoCteeL tsetnoc"
-1.写一个将char数组里的字符反转的方法，用双指针
-2.将string 转成char array。只需要关注空格和最后 array的最后一位就行（因为最后一个单词后无空格）
-3.写一个循环，如果到空格位，那么start到空格位-1这些字符反转，然后**更新start，新的起始点是start=i+1**。
-4.如果是最后一个单词，就是index=s.length-1，引入反转函数。
-5.最后 ** return new String(array);**
+>1.写一个将char数组里的字符反转的方法，用双指针
+>2.将string 转成char array。只需要关注空格和最后 array的最后一位就行（因为最后一个单词后无空格）
+>3.写一个循环，如果到空格位，那么start到空格位-1这些字符反转，然后**更新start，新的起始点是start=i+1**。
+>4.如果是最后一个单词，就是index=s.length-1，引入反转函数。
+>5.最后 ** return new String(array);**
 
 904. Fruit Into Baskets
 
@@ -342,7 +342,7 @@ public static void selectionSort(int[] arr) {
 
 步骤：
 1.**从第二个元素（第一个要被排序的新元素）开始**。从后向前扫描之前的元素序列
-2. 如果当前扫描的元素大于新元素，就讲扫描元素移动到下一位
+2. 如果当前扫描的元素大于新元素，就将扫描元素移动到下一位
 3. 循环上一步直到找到一个小于等于新元素的位子
 4. 将新元素插入该位子，重复之前的。
 
@@ -368,6 +368,7 @@ public void insertionSort(int[] array) {
 >Given the head of a singly linked list, sort the list using insertion sort, and return the sorted list's head.
 >Input: head = [4,2,1,3]
 >Output: [1,2,3,4]
+
 ### quick sort
 快排是一种分治（Divide and Conquer）算法，在这种算法中，我们把大问题变成小问题，然后将小问题逐个解决，当小问题解决完时，大问题也迎刃而解。
 快排的基本概念就是选取一个目标元素，然后将目标元素放到数组中正确的位置。然后根据排好序后的元素，将数组切分为两个子数组，用相同的方法，在没有排好序的范围使用相同的操作。
@@ -395,6 +396,8 @@ public void insertionSort(int[] array) {
 
 3.循环链表
 ![1646334657(1)](https://user-images.githubusercontent.com/57675566/156635494-f9cf5028-944e-476a-b891-0baa9977c0cd.png)
+
+**可以认为一叉树就是链表**
 
 ## 存储方式
 链表在内存中可不是连续分布的。
@@ -439,7 +442,7 @@ class ListNode {
     this.val=val;
 }
 ```
-### 解决问题的时候一处理头节点有两个方法：
+## 解决问题的时候一处理头节点有两个方法：
 1. 在头节点之前创造一个虚拟节点用那个节点做头：
 ListNode dummy =new ListNode (-1, head);
 这样，head就是dummy.next **注意最后return 的时候要return head ！！**
@@ -457,6 +460,86 @@ ListNode dummy =new ListNode (-1, head);
 ```
 注意那里是while不是if，因为会有比如 在链表 【7,7,7,7】里删除value为7 的值得问题。这里就要全删，一个if是不能完成的。
 
+## 链表的遍历递归反转等
+### 链表的前序遍历
+```Java
+dfs(cur) {
+    if 当前节点为空 return
+    print(cur.val)
+    return dfs(cur.next)
+}
+```
+### 一般遍历：
+```Java
+正序：
+for (ListNode cur = head; cur != null; cur = cur.next) {
+    print(cur.val)
+}
+
+逆序(双链表)
+for (ListNode cur = tail; cur != null; cur = cur.pre) {
+    print(cur.val)
+}
+```
+### 在链表尾部增加一个node：
+```Java
+// 假设 tail 是链表的尾部节点
+tail.next = new ListNode('lucifer')
+tail = tail.next
+```
+### 反转任意一段链表
+reverse(self, head: ListNode, tail: ListNode)
+由于链表的递归性，实际上，我们只要反转其中相邻的两个，剩下的采用同样的方法完成即可
+```python
+class Solution:
+    # 翻转一个子链表，并且返回新的头与尾
+    def reverse(self, head: ListNode, tail: ListNode, terminal:ListNode):
+        cur = head
+        pre = None
+        while cur != terminal:
+            # 留下联系方式
+            next = cur.next
+            # 修改指针
+            cur.next = pre
+
+            # 继续往下走
+            pre = cur
+            cur = next
+         # 反转后的新的头尾节点返回出去
+        return tail, head
+```
+### 链表的技巧
+#### 递归
+画出链表的子结构，根据递归性解题（看递归的三点）
+如果是前序遍历，那么你可以想象前面的链表都处理好了，怎么处理的不用管。相应地如果是后序遍历，那么你可以想象后面的链表都处理好了，怎么处理的不用管。
+```python
+//前序遍历
+def dfs(cur, pre):
+    if not cur: return pre
+    # 留下联系方式（由于后面的都没处理，因此可以通过 head.next 定位到下一个）
+    next = cur.next
+    # 主逻辑（改变指针）在进入后面节点的前面（由于前面的都已经处理好了，因此不会有环）
+    cur.next = pre
+    dfs(next, cur)
+
+dfs(cur, None)
+
+//后续遍历
+通过 cur.next 拿到下一个元素，然后将下一个元素的 next 指向自身来完成反转，但这时候就造成了环，所以将cur.next 置空
+def dfs(head):
+    if not head or not head.next: return head
+    # 不需要留联系方式了，因为我们后面已经走过了，不需走了，现在我们要回去了。
+    res = dfs(head.next)
+    # 主逻辑（改变指针）在进入后面的节点的后面，也就是递归返回的过程会执行到
+    head.next.next = head
+    # 置空，防止环的产生
+    head.next = None
+
+    return res
+```
+**写递归：如何根据已经处理的数据和当前的数据来推导还没有处理的数据**
+
+### 
 **707Design Linked List**
 设计题，重点注意，可以设计单向也可以双向
 1.单向链表
@@ -500,7 +583,7 @@ class Solution {
 24.Swap Nodes in Pairs
 >Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
 >Input: head = [1,2,3,4]  Output: [2,1,4,3]
-**无论哪种方法都要创造dummy node。做prev**
+>**无论哪种方法都要创造dummy node。做prev**
 1. 非递归写法
 这里的dummy node 和head, head.next初始分别是 nullor0,1,2.
 要保证head 和head.next都不是null，不然一个没有或者只有一个都不能反转，只能直接return head
@@ -548,13 +631,8 @@ or
 142：
 >Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
 >There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the >index of the node that tail's next pointer is connected to (0-indexed). It is -1 if there is no cycle. Note that pos is not passed as a parameter.
-数学问题，见https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/和代码随想录。
-key point：1， 快慢指正找链表环入口。 确认链表环node之后新一个指针在head，然后指针同步后移，两个指针相遇的地方就是链表入环的node。假设从头结点到环形入口节点 的节点数为x。 环形入口节点到 fast指针与slow指针相遇节点 节点数为y。 从相遇节点 再到环形入口节点节点数为 z，计算相遇时候快慢指针走过的node数，然后得出x，y，z的关系。
-
-
-
-
-
+>数学问题，见https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/和代码随想录。
+>key point：1， 快慢指正找链表环入口。 确认链表环node之后新一个指针在head，然后指针同步后移，两个指针相遇的地方就是链表入环的node。假设从头结点到环形入口节点 的节点数为x。 环形入口节点到 fast指针与slow指针相遇节点 节点数为y。 从相遇节点 再到环形入口节点节点数为 z，计算相遇时候快慢指针走过的node数，然后得出x，y，z的关系。
 
 
 
