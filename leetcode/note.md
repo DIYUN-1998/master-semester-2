@@ -543,14 +543,13 @@ def dfs(head):
 **707Design Linked List**
 设计题，重点注意，可以设计单向也可以双向
 1.单向链表
-在写初始化链表前，先定义size和head（sentinel node）
-public MyLinkedList() {}： 初始化链表，给size和head赋值
-public int get(int index) {}获取第index节点的值，注意index里的第一位给了虚拟头结点，所以for循环查找第index+1位
-public void addAtHead(int val) {}
-public void addAtTail(int val) {} 这两个一样，用addAtIndex就可以，注意赋值
-public void addAtIndex(int index, int val) {} 先把不成立的情况去掉，index>size 和index<0
-然后找到要插入节点的前节点，然后插入
-public void deleteAtIndex(int index){}同样，但是要比上一个简单，只要找到删除节点的前节点，然后让前节点的next=前节点的next.next就行
+- 在写初始化链表前，先定义size和head（sentinel node）
+- public MyLinkedList() {}： 初始化链表，给size和head赋值
+- public int get(int index) {}获取第index节点的值，注意index里的第一位给了虚拟头结点，所以for循环查找第index+1位
+- public void addAtHead(int val) {}
+- public void addAtTail(int val) {} 这两个一样，用addAtIndex就可以，注意赋值
+- public void addAtIndex(int index, int val) {} 先把不成立的情况去掉，index>size 和index<0
+- 然后找到要插入节点的前节点，然后插入public void deleteAtIndex(int index){}同样，但是要比上一个简单，只要找到删除节点的前节点，然后让前节点的next=前节点的next.next就行
 
 2.双向链表
 
