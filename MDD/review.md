@@ -84,9 +84,42 @@ here a domain-specific modelling language can be used to capture the difference 
 For complicated systems, introducing a model-based approach may reduce the cognitive load for developers and make it easier to build the system.
 
 Question 3
-Which technologies have been key for bringing MDE out of the trough of disillusionment?
+Which technologies have been key for bringing MDE out of the trough of disillusionment 幻灭感?
 1. Language workbenches
 2. DSMLs
+
+
+## principles of modelling
+<img width="608" alt="image" src="https://user-images.githubusercontent.com/57675566/167010174-1fc4c2a7-1c9c-4cab-96e2-31a6aa2d20b8.png">
+The abstract syntax captures the concepts of a modelling language and the links between these. This is often done in a so-called metamodel, which captures concepts as classes and links as associations.
+The concrete syntax is based on the abstract syntax and defines what the language looks like to the user and how users interact with the model. This can take many forms, from graphical and textual to tabular or more exotic forms as appropriate for the domain and purpose.
+Finally, a modelling language needs a semantics defining what each possible model means. This can be defined fairly informally, but may need to be defined more formally to enable compilation and analysis of the models.
+![image](https://user-images.githubusercontent.com/57675566/167010267-d4de5f8e-edb5-4ed9-b06f-fdff14eada38.png)
+
+
+Question 1
+To make models useful, modelling tools enforce that each model is expressed in a well‐defined modelling language.
+
+Question 2
+Which of the below are part of the concrete syntax of a modelling language?
+Specification of how the user interacts with the language
+Specification of what language concepts look like
+
+Question 3
+Which of the below are part of the abstract syntax of a modelling language?
+Language concepts
+Links between concepts
+
+Question 4
+UML is a general‐purpose modelling language
+
+Question 5
+Models are turned into realisation artefacts using transformations that
+execute transformation definitions.
+
+Question 6
+Which of the below are part of the semantics of a modelling language?
+Specification of what the language concepts mean
  
 # week2 building first textual language
 ## one reference link http://dsl-course.org/xtext-writing-a-grammar/
