@@ -92,9 +92,26 @@ Which technologies have been key for bringing MDE out of the trough of disillusi
 ## principles of modelling
 <img width="608" alt="image" src="https://user-images.githubusercontent.com/57675566/167010174-1fc4c2a7-1c9c-4cab-96e2-31a6aa2d20b8.png">
 The abstract syntax captures the concepts of a modelling language and the links between these. This is often done in a so-called metamodel, which captures concepts as classes and links as associations.
+
 The concrete syntax is based on the abstract syntax and defines what the language looks like to the user and how users interact with the model. This can take many forms, from graphical and textual to tabular or more exotic forms as appropriate for the domain and purpose.
+
 Finally, a modelling language needs a semantics defining what each possible model means. This can be defined fairly informally, but may need to be defined more formally to enable compilation and analysis of the models.
-![image](https://user-images.githubusercontent.com/57675566/167010267-d4de5f8e-edb5-4ed9-b06f-fdff14eada38.png)
+
+GPML and DSML
+
+External DSML and Internal DSML
+<img width="614" alt="image" src="https://user-images.githubusercontent.com/57675566/167015109-058abd4b-065e-421f-9ff3-a234898026bb.png">
+
+External DSML:
+- can be used independently of any other tooling
+- **UML**
+
+Internal DSML:
+- Clever use of language and API design
+- Embedded in a host language
+
+
+
 
 
 Question 1
