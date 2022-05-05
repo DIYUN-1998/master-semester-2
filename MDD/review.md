@@ -70,6 +70,23 @@ concepts relevant to a particular problem domain. What are the pragmatics of thi
 model?
 →Descriptive
 
+Question 1
+Development effort in a model-driven development approach is typically front‐loaded 前置性的
+
+Question 2
+When would you recommend using an MDE-based approach?
+1. When contributions from domain experts are key to the successful development of a software system
+Domain-specific modelling languages can often be useful to help domain experts express their domain knowledge. It is important to be careful though and consider
+the effort required for developing these DSMLs in relation to the benefits obtained.
+2. When developing multiple similar but different systems -- 
+here a domain-specific modelling language can be used to capture the difference between systems This is probably the most typical use case for MDE.
+3. For a one-off development of a complicated system
+For complicated systems, introducing a model-based approach may reduce the cognitive load for developers and make it easier to build the system.
+
+Question 3
+Which technologies have been key for bringing MDE out of the trough of disillusionment?
+1. Language workbenches
+2. DSMLs
  
 # week2 building first textual language
 ## one reference link http://dsl-course.org/xtext-writing-a-grammar/
